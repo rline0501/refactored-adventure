@@ -66,11 +66,16 @@ public class EnemyGenerator : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 敵の生成と生成敵の個別ステータス用意
+    /// </summary>
     public void GenerateEnemy()
     {
         EnemyNavigation enemy = Instantiate(enemyPrefab, generatePos.position, Quaternion.identity);
 
         StartCoroutine(enemy.SetTarget(goalPos));
+
+        enemy.gameObject.GetComponent<EnemyBase> ().SetStates(10, 10);
     }
 
 

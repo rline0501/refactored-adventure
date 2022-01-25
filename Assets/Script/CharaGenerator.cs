@@ -35,7 +35,7 @@ public class CharaGenerator : MonoBehaviour
                 Debug.Log("キャラを配置");
 
                 //取得したx,z座標に実体化させたキャラPrefabを配置する
-                chara.transform.position = new Vector3(x, 0, z);
+                chara.transform.position = new Vector3(x, hit.point.y, z);
             }
 
         }
