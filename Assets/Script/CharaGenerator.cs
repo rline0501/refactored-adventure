@@ -27,13 +27,15 @@ public class CharaGenerator : MonoBehaviour
                 float x = Mathf.RoundToInt(hit.point.x);
 
                 //Rayの当たったマスのz座標値を丸めて整数にしてzに代入（マス中央座標用）
-                float z = Mathf.RoundToInt(hit.point.z)+0.5f;
+                float z = Mathf.RoundToInt(hit.point.z);
 
                 //GameObject型変数にCharaPrefabを実体化
                 GameObject chara = Instantiate(charaPrefab);
 
+                Debug.Log("キャラを配置");
+
                 //取得したx,z座標に実体化させたキャラPrefabを配置する
-                chara.transform.position = new Vector3(x, 0, z);
+                chara.transform.position = new Vector3(x, hit.point.y, z);
             }
 
         }
