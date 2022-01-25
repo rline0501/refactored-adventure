@@ -7,6 +7,10 @@ public class CharaController : MonoBehaviour
     [SerializeField, Header("攻撃力")]
     private int attackPower = 10;
 
+
+    [SerializeField, Header("HP")]
+    private int hp = 15;
+
     [SerializeField, Header("攻撃速度")]
     private float attackSpeed = 60.0f;
 
@@ -15,6 +19,9 @@ public class CharaController : MonoBehaviour
 
     [SerializeField]
     private EnemyNavigation enemy;
+
+    [SerializeField]
+    private CharaGenerator chara;
         
     private void OnTriggerStay(Collider collision)
     {
@@ -44,6 +51,17 @@ public class CharaController : MonoBehaviour
             enemy = null;
 
         }
+    }
+
+    /// <summary>
+    /// 味方キャラの個別ステータスに上書き
+    /// </summary>
+    /// <param name="attackPower"></param>
+    /// <param name="Hp"></param>
+    public void SetCharaStates(int attackPower, int hp)
+    {
+        this.attackPower = attackPower;
+        this.hp = hp;
     }
 
     /// <summary>

@@ -16,7 +16,7 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     /// <param name="attackPower"></param>
     /// <param name="hp"></param>
-    public void SetStates(int attackPower, int hp)
+    public void SetEnemyStates(int attackPower, int hp)
     {
         this.attackPower = attackPower;
         this.hp = hp;
