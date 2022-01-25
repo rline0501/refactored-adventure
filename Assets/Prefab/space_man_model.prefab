@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 111744052045278198}
   - component: {fileID: 5505903699368132753}
   - component: {fileID: 831063452881006470}
+  - component: {fileID: 6075916116875459445}
   m_Layer: 0
   m_Name: space_man_model
   m_TagString: Untagged
@@ -304,6 +305,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6075916116875459445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112338128624330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317878d391e9c1b41a2e32d905eb1690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPower: 5
+  hp: 15
 --- !u!1 &1114138090204880
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,7 +75,7 @@ public class EnemyGenerator : MonoBehaviour
 
         StartCoroutine(enemy.SetTarget(goalPos));
 
-        enemy.gameObject.GetComponent<EnemyBase> ().SetStates(10, 10);
+        enemy.gameObject.GetComponent<EnemyBase> ().SetEnemyStates(10, 10);
     }
 
 

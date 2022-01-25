@@ -6,7 +6,7 @@ public class CharaGenerator : MonoBehaviour
 {
     //配置するキャラのPrefab情報（設計図）
     [SerializeField]
-    private GameObject charaPrefab;
+    private CharaController charaPrefab;
 
     //
 
@@ -30,12 +30,15 @@ public class CharaGenerator : MonoBehaviour
                 float z = Mathf.RoundToInt(hit.point.z);
 
                 //GameObject型変数にCharaPrefabを実体化
-                GameObject chara = Instantiate(charaPrefab);
+                CharaController chara = Instantiate(charaPrefab);
 
                 Debug.Log("キャラを配置");
 
                 //取得したx,z座標に実体化させたキャラPrefabを配置する
                 chara.transform.position = new Vector3(x, hit.point.y, z);
+
+                //生成したキャラにステータスを設定
+                chara.SetCharaStates(100, 10);
             }
 
         }
