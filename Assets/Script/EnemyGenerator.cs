@@ -21,6 +21,8 @@ public class EnemyGenerator : MonoBehaviour
 
     public int maxEnemyCount;
 
+    public EnemyDataSO enemyDataSO;
+
     void Start()
     {
         isEnemyGenerate = true;
@@ -71,11 +73,15 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     public void GenerateEnemy()
     {
+        //生成するエネミーの番号をEnemyDataSOから引っ張るためにGetEnemyDataに欲しいエネミーの番号を宣言する
+        EnemyData enemydata = enemyDataSO.GetEnemyData(0);
+        
         EnemyNavigation enemy = Instantiate(enemyPrefab, generatePos.position, Quaternion.identity);
 
-        StartCoroutine(enemy.SetTarget(goalPos));
+        //
+        StartCoroutine(enemy.SetTarget(goalPos, enemydata.moveSpeed));
 
-        enemy.gameObject.GetComponent<EnemyBase> ().SetEnemyStates(10, 10);
+        enemy.gameObject.GetComponent<EnemyBase> ().SetEnemyStates(enemydata);
     }
 
 
