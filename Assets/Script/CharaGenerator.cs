@@ -6,9 +6,11 @@ public class CharaGenerator : MonoBehaviour
 {
     //配置するキャラのPrefab情報（設計図）
     [SerializeField]
-    private CharaController charaPrefab;
+    private CharaBase charaPrefab;
 
     //
+    [SerializeField]
+    public CharaDataSO charaDataSO;
 
     void Update()
     {
@@ -29,19 +31,37 @@ public class CharaGenerator : MonoBehaviour
                 //Rayの当たったマスのz座標値を丸めて整数にしてzに代入（マス中央座標用）
                 float z = Mathf.RoundToInt(hit.point.z);
 
-                //GameObject型変数にCharaPrefabを実体化
-                CharaController chara = Instantiate(charaPrefab);
+                //GameObject型変数にCharaPrefabを実体化(SO参照して生成するメソッドに置き換え)
+                GenerateChara(new Vector3(x, hit.point.y, z));
 
                 Debug.Log("キャラを配置");
 
-                //取得したx,z座標に実体化させたキャラPrefabを配置する
-                chara.transform.position = new Vector3(x, hit.point.y, z);
+                
 
                 //生成したキャラにステータスを設定
-                chara.SetCharaStates(100, 10);
+                //chara.SetCharaStates(100, 10);
             }
 
         }
 
+    }
+
+    /// <summary>
+    /// キャラを生成して、キャラ個別のステータスを上書きする
+    /// </summary>
+    private void GenerateChara(Vector3 newPos)
+    {
+        ///生成したいキャラの番号をCharaDataSOへ宣言してSOから情報を得る。得るためのメソッドを用意
+        CharaData charaData = charaDataSO.GetCharaData(0);
+
+        ///キャラ生成
+        CharaBase chara = Instantiate(charaPrefab, transform.position, Quaternion.identity);
+        
+        //取得したx,z座標に実体化させたキャラPrefabを配置する
+        chara.transform.position = newPos;
+
+        ///キャラの初期ステータスを、最初に拾ったCharaDataSOのキャラデータで上書きする
+        ///キャラのデータを持ったキャラ変数からCharaBaseをゲットして、そこに干渉できるようにしてからメソッドでSOのデータに上書きする
+        chara.SetCharaStates(charaData);
     }
 }

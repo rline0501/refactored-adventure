@@ -11,9 +11,14 @@ public class CharaBase : MonoBehaviour
     private int hp = 15;
 
 
-    public void SetCharaStates()
+    /// <summary>
+    /// キャラのステータスを上書きする
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void SetCharaStates(CharaData charaData)
     {
-        
+        this.attackPower = charaData.attackPower;
+        this.hp = charaData.hp;
     }
 
 }
