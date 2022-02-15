@@ -20,6 +20,7 @@ public class EnemyDataSO : ScriptableObject
                 return data;
             }
         }
+        //–³‚©‚Á‚½ê‡‚ÉŒŸõŒ‹‰Ê‚È‚µ‚ÌŒ‹‰Ê‚ğo‚·‚½‚ß‚É•K—v
         return null;
     }
 }

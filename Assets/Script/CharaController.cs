@@ -7,7 +7,6 @@ public class CharaController : MonoBehaviour
     [SerializeField, Header("UŒ‚—Í")]
     private int attackPower = 10;
 
-
     [SerializeField, Header("HP")]
     private int hp = 15;
 
@@ -20,8 +19,9 @@ public class CharaController : MonoBehaviour
     [SerializeField]
     private EnemyNavigation enemy;
 
+    //“G‚ÌHPŠÇ—‚È‚Ç‚Ö‚ÌŠ±Â‚ª•K—v‚É‚È‚Á‚½‚Ì‚½‚ß‚ÉCharaBaseŒ^‚ğ—pˆÓ‚¾‚¯‚µ‚Ä‚¨‚­
     [SerializeField]
-    private CharaGenerator chara;
+    private CharaBase charaBase;
         
     private void OnTriggerStay(Collider collision)
     {
@@ -29,6 +29,7 @@ public class CharaController : MonoBehaviour
         {
             Debug.Log("“G‚ğ”­Œ©");
 
+            //“G‚ğŠ´’m‚µ‚½‚çUŒ‚ó‘Ô‚É“ü‚é
             if(collision.gameObject.TryGetComponent(out enemy))
             {
 
@@ -53,16 +54,7 @@ public class CharaController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// –¡•ûƒLƒƒƒ‰‚ÌŒÂ•ÊƒXƒe[ƒ^ƒX‚Éã‘‚«
-    /// </summary>
-    /// <param name="attackPower"></param>
-    /// <param name="Hp"></param>
-    public void SetCharaStates(int attackPower, int hp)
-    {
-        this.attackPower = attackPower;
-        this.hp = hp;
-    }
+    
 
     /// <summary>
     /// UŒ‚€”õ

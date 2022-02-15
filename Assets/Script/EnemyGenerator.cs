@@ -76,11 +76,13 @@ public class EnemyGenerator : MonoBehaviour
         //生成するエネミーの番号をEnemyDataSOから引っ張るためにGetEnemyDataに欲しいエネミーの番号を宣言する
         EnemyData enemydata = enemyDataSO.GetEnemyData(0);
         
+        //↓でEnemyNavigationのgoalPos情報を使うのであらかじめ型として宣言しつつ、PrefabをgeneratePosに実体化
         EnemyNavigation enemy = Instantiate(enemyPrefab, generatePos.position, Quaternion.identity);
 
-        //
+        //ゴール地点の情報と移動速度の情報をenemyに付与
         StartCoroutine(enemy.SetTarget(goalPos, enemydata.moveSpeed));
 
+        //エネミーのステータスを、最初に拾ったEnemyDataSOのエネミーデータでSetEnemyStateで上書きする
         enemy.gameObject.GetComponent<EnemyBase> ().SetEnemyStates(enemydata);
     }
 
