@@ -5,10 +5,13 @@ using UnityEngine;
 public class CharaBase : MonoBehaviour
 {
     [SerializeField, Header("UŒ‚—Í")]
-    private int attackPower = 5;
+    public int attackPower = 5;
 
     [SerializeField]
-    private int hp = 15;
+    public int hp = 15;
+
+    [SerializeField, Header("UŒ‚‘¬“x")]
+    public float attackSpeed = 2.0f;
 
 
     /// <summary>

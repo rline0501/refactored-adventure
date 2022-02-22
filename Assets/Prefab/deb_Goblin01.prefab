@@ -334,6 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPower: 5
   hp: 15
+  isDead: 0
+  capCol: {fileID: 5370526042733829148}
 --- !u!1 &8272943599224061575
 GameObject:
   m_ObjectHideFlags: 0

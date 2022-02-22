@@ -4,34 +4,41 @@ using UnityEngine;
 
 public class CharaController : MonoBehaviour
 {
-    [SerializeField, Header("UŒ‚—Í")]
-    private int attackPower = 10;
-
-    [SerializeField, Header("HP")]
-    private int hp = 15;
-
-    [SerializeField, Header("UŒ‚‘¬“x")]
-    private float attackSpeed = 60.0f;
-
     [SerializeField]
     private bool isAttack;
 
     [SerializeField]
-    private EnemyNavigation enemy;
+    private EnemyBase enemy;
 
     //“G‚ÌHPŠÇ—‚È‚Ç‚Ö‚ÌŠ±Â‚ª•K—v‚É‚È‚Á‚½‚Ì‚½‚ß‚ÉCharaBaseŒ^‚ğ—pˆÓ‚¾‚¯‚µ‚Ä‚¨‚­
     [SerializeField]
     private CharaBase charaBase;
         
+
+    /// <summary>
+    /// “G‚ğŠ´’m
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerStay(Collider collision)
     {
+        //if(enemy && enemy.isDead == true)
+        //{
+            //“G‚ğŠ´’m‚µ‚½‚ª‚»‚Ì“G‚ª€‚ñ‚Å‚¢‚éê‡Aˆ—‚µ‚È‚¢
+            //return;
+        //}
+
         if(!isAttack && !enemy)
         {
-            Debug.Log("“G‚ğ”­Œ©");
+            //Debug.Log("“G‚ğ”­Œ©");
 
             //“G‚ğŠ´’m‚µ‚½‚çUŒ‚ó‘Ô‚É“ü‚é
             if(collision.gameObject.TryGetComponent(out enemy))
             {
+                //if(enemy.isDead == true)
+                //{
+                    //Š´’m‚µ‚½‚¯‚Ç“G‚ª
+                    //return;
+                //}
 
                 isAttack = true;
 
@@ -41,11 +48,16 @@ public class CharaController : MonoBehaviour
         
     }
 
+
+    /// <summary>
+    /// “G‚ÌŠ´’m‰ğœ
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.TryGetComponent(out enemy))
         {
-            Debug.Log("“G‚È‚µ");
+            //Debug.Log("“G‚È‚µ");
 
             isAttack = false;
 
@@ -66,11 +78,11 @@ public class CharaController : MonoBehaviour
 
         float timer = 0;
 
-        float attackInterval = 100;
+        float attackInterval = 300;
 
         while (isAttack)
         {
-            timer += attackSpeed;
+            timer += charaBase.attackSpeed;
 
             if(timer > attackInterval)
             {
@@ -87,9 +99,26 @@ public class CharaController : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("UŒ‚");
+        //ƒGƒlƒ~[ƒf[ƒ^‚ğŒvZ‚³‚¹‚é‚½‚ß‚ÉUŒ‚—Í‚ğ÷“n
+        enemy.CalculateHp(charaBase.attackPower, this);
+
+
+        //Debug.Log("UŒ‚");
+
+
+
 
         //ƒGƒtƒFƒNƒg‚âƒ_ƒ[ƒWˆ—
+    }
+
+    /// <summary>
+    /// “G‚ğ“|‚µ‚½‚ÌŠ´’m‰ğœ
+    /// </summary>
+   public void DisarmChara()
+    {
+        isAttack = false;
+
+        enemy = null;
     }
 
 }
